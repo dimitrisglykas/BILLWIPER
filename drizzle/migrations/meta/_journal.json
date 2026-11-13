@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794571711071,
+      "tag": "0000_billwiper_core",
+      "breakpoints": true
+    }
+  ]
 }

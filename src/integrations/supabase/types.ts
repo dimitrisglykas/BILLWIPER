@@ -14,13 +14,171 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bill_codes: {
+        Row: {
+          bill_id: string
+          owner_id: string
+          rf_code: string
+        }
+        Insert: {
+          bill_id: string
+          owner_id: string
+          rf_code: string
+        }
+        Update: {
+          bill_id?: string
+          owner_id?: string
+          rf_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bill_codes_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: true
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bills: {
+        Row: {
+          amount: number
+          city: string
+          created_at: string
+          due_date: string | null
+          first_name: string
+          id: string
+          is_demo: boolean
+          note: string
+          owner_id: string | null
+          provider: string
+          status: string
+        }
+        Insert: {
+          amount: number
+          city: string
+          created_at?: string
+          due_date?: string | null
+          first_name: string
+          id?: string
+          is_demo?: boolean
+          note: string
+          owner_id?: string | null
+          provider: string
+          status?: string
+        }
+        Update: {
+          amount?: number
+          city?: string
+          created_at?: string
+          due_date?: string | null
+          first_name?: string
+          id?: string
+          is_demo?: boolean
+          note?: string
+          owner_id?: string | null
+          provider?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      demo_leaders: {
+        Row: {
+          bill_count: number
+          city: string
+          id: number
+          total_amount: number
+          username: string
+          weekly_amount: number
+        }
+        Insert: {
+          bill_count: number
+          city: string
+          id: number
+          total_amount: number
+          username: string
+          weekly_amount: number
+        }
+        Update: {
+          bill_count?: number
+          city?: string
+          id?: number
+          total_amount?: number
+          username?: string
+          weekly_amount?: number
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          bill_id: string
+          created_at: string
+          id: string
+          payer_id: string
+          receipt_path: string
+          status: string
+        }
+        Insert: {
+          amount: number
+          bill_id: string
+          created_at?: string
+          id?: string
+          payer_id: string
+          receipt_path: string
+          status?: string
+        }
+        Update: {
+          amount?: number
+          bill_id?: string
+          created_at?: string
+          id?: string
+          payer_id?: string
+          receipt_path?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          city: string
+          id: string
+          username: string
+        }
+        Insert: {
+          city?: string
+          id: string
+          username: string
+        }
+        Update: {
+          city?: string
+          id?: string
+          username?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      billwiper_leaders: {
+        Args: { weekly?: boolean }
+        Returns: {
+          bill_count: number
+          city: string
+          total_amount: number
+          username: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
