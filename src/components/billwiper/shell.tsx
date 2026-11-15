@@ -7,14 +7,13 @@ import { Dialog,DialogContent,DialogTitle,DialogDescription } from '@/components
 import { supabase } from '@/integrations/supabase/client';
 import { lovable } from '@/integrations/lovable';
 import { toast } from 'sonner';
-import logo from '@/assets/billwiper-logo.png.asset.json';
 import {Intro} from './intro';
 import {EmailAuth} from './email-auth';
 import type { User } from '@supabase/supabase-js';
 
 const Session=createContext<{user:User|null;openAccount:()=>void}>({user:null,openAccount:()=>{}});
 export const useAccount=()=>useContext(Session);
-export function Brand(){return <div className="brand"><img className="brand-logo" src={logo.url} alt="BILLWIPER"/><div className="brand-caption"><strong>BILLWIPER</strong><small>Swipe. Wipe. Change Lives.</small></div></div>}
+export function Brand(){return <div className="brand"><img className="brand-logo" src="/billwiper-logo.png" alt="BILLWIPER"/><div className="brand-caption"><strong>BILLWIPER</strong><small>Swipe. Wipe. Change Lives.</small></div></div>}
 export function BillwiperShell({children}:{children:ReactNode}){
  const [user,setUser]=useState<User|null>(null),[account,setAccount]=useState(false),[username,setUsername]=useState(''),[city,setCity]=useState('');
  const router=useRouter(),queryClient=useQueryClient();
