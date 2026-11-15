@@ -1,4 +1,6 @@
 # Billwiper
+- [ ] Restore the supplied original logo and remove the unwanted replacement image after identifying it
+- [ ] Investigate officially supported managed Google OAuth on Vercel without changing auth settings
 - [ ] Connect custom-domain managed Google OAuth — domain connection requires owner confirmation
 - [x] Implement recovery completion and validation; approved-inbox request executed
 - [ ] Complete genuine email-link redemption and password update — approved QA account not found; minted-session update returned HTTP 500
