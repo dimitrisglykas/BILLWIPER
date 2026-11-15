@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## App architecture
+- Public content lives on three TanStack routes with a shared shell; keep protected mutations in authenticated server functions.
+- Store anonymous bill fields separately from RF codes and private receipt files; public reads must never expose originals or private identifiers.
+- Receipt uploads remain pending until authoritative payment confirmation; demo completion must not modify real payments or rankings.
+- Use manifest-only installability without offline caching, so financial data cannot be served from a stale app shell.
+- AI extraction uses the generated Google chat contract through Lovable Gateway inside a server function; validate extracted RF checksums before publishing.
