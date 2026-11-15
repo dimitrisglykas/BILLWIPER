@@ -8,3 +8,7 @@ export function nextBillIndex<T extends {id:string}>(bills:T[], index:number, pa
  while(next<bills.length && paid.includes(bills[next]?.id ?? '')) next++;
  return next;
 }
+export function indexAfterContribution<T extends {id:string}>(bills:T[], nextId:string|undefined){
+ const next=nextId?bills.findIndex(b=>b.id===nextId):-1;
+ return next>=0?next:0;
+}

@@ -31,7 +31,7 @@ use the editor.
 
 ## App architecture
 - Keep the compact swipe trust dialog in a presentation-only component; explain OCR limitations and simulated payments without changing payment logic.
-- Public content lives on three TanStack routes with a shared shell; keep protected mutations in authenticated server functions.
+- Public content uses TanStack content routes with a shared shell; keep protected mutations in authenticated server functions.
 - Store anonymous bill fields separately from RF codes and private receipt files; public reads must never expose originals or private identifiers.
 - Receipt uploads remain pending until authoritative payment confirmation; demo completion must not modify real payments or rankings.
 - Public demo rankings require explicit is_public_demo approval; default new entries to private so future rows cannot leak through the example-data policy.
@@ -45,3 +45,6 @@ use the editor.
 
 - Keep bill goals separate from remaining amounts in presentation data; render provider badges and funded progress in a shared card with opacity-only lighting and transform-only motion.
 - Public stories use a dedicated anonymous description, never private notes; showcase totals and rankings share approved sample amounts plus recorded simulations, excluding retired test bills.
+- Gate existing real-document and receipt handlers with a shared prototype guard while retaining their implementation and historical data; the public feed includes only synthetic rows to avoid reactivating real processing.
+- Derive demo XP from recorded distinct bill participation, never contributed amounts; keep verified-impact rankings empty until authoritative verification exists.
+- Keep fictional sponsor scenarios and share cards in client-safe presentation modules; projected budgets must never enter contribution totals or persisted payment records.

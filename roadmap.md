@@ -1,4 +1,8 @@
 # Billwiper
+- [x] Upgrade mobile layout, swipe controls, cards and prototype-only transparency without deleting data
+- [x] Add participation-based demo XP, badge previews, weekly/city/creator challenges and shareable impact cards
+- [x] Add fictional sponsor campaigns, budget simulator and impact dashboard
+- [x] Verify navigation, mobile/tablet/desktop layouts and signed-in demo contribution flow
 - [x] Sweep all trust messages and footer paths for consistent live/planned service disclosure
 - [x] Clarify live versus planned trust services and verify footer clearance above mobile navigation
 - [x] Add portfolio footer attribution and concise trust modal without changing swipe cards
@@ -14,8 +18,8 @@
 - [x] Upload and payment receipt submission with honest verification states
 - [x] Home-screen installability and sharing
 - [x] Rule tests and mobile/desktop demo flow verification
-- [ ] Authoritative real payment confirmation: needs bank/provider confirmation integration
-- [ ] Successful genuine-bill OCR end-to-end: needs a genuine test utility bill
+- [x] Keep authoritative real payment confirmation inactive as required for the prototype
+- [x] Disable genuine-bill OCR and receipt processing while preserving implementations and historical records
 - [x] Persist isolated demo uploads and full/partial wipes, with live counters and rankings
 - [x] Anonymous cards, upload privacy guidance, and trust footer drawers
 - [x] Verify signed-in persistence, permission boundaries, and mobile/desktop flows
