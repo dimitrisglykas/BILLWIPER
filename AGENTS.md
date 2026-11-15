@@ -58,3 +58,4 @@ use the editor.
 - Apply the shared luxury presentation layer through global semantic tokens and existing controls, leaving server functions, contribution rules and database policies unchanged.
 - Password recovery is a public client-only route authorized only by the SDK recovery event and revalidated user; keep recovery authorization in memory, never infer it from ordinary sessions or editable storage.
 - Retire unused real-payment ranking functions by removing visitor/member execution, preserving definitions and historical rows; public rankings remain synthetic-only.
+- Resolve the shared validation dependency to the patched version across tooling and application schemas; keep concrete rule tests to prevent validation changes during security updates.

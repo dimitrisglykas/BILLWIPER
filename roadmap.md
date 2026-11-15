@@ -1,14 +1,15 @@
 # Billwiper
-- [ ] Repair reproduced mobile, navigation, account and error-state issues without redesign
-- [ ] Verify public and signed-in flows; record external hosting/auth and admin blockers
+- [x] Repair reproduced mobile clearance, centered cancellation, account return focus and bilingual error states without redesign
+- [x] Patch scanned production dependency advisories and run validation/privacy regressions
+- [x] Verify public and ordinary-member flows with persisted synthetic contribution; remove QA data
 - [x] Remove the rejected glass-checkmark artwork; preserve the supplied logo and verify the homepage
 - [x] Investigate officially supported managed Google OAuth on Vercel without changing auth settings
-- [ ] Connect custom-domain managed Google OAuth — domain connection requires owner confirmation
+- [ ] Complete managed Google OAuth on Vercel — external return address needs manual allowlisting and supported generated external-host integration
 - [x] Implement recovery completion and validation; approved-inbox request executed
 - [ ] Complete genuine email-link redemption and password update — approved QA account not found; minted-session update returned HTTP 500
 - [x] Retire public legacy payment rankings and test denied direct access
 - [x] Run unit and live privacy regressions without granting admin roles
-- [ ] Successful Google return/cancellation/persistence and authorized-admin browser tests — domain hosting unconnected; no admin roles may be assigned
+- [ ] Successful Google return/cancellation/persistence and authorized-admin browser tests — external Google integration unresolved; owner must identify an admin account
 - [x] Refine shared design system, navigation, swipe deck, community, sponsors, upload and admin presentation
 - [x] Add private personal impact view using existing own-record permissions and honest achievement states
 - [x] Verify languages, mobile/tablet/desktop, sponsor submission and visitor/member/admin access
