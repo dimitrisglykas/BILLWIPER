@@ -1,29 +1,5 @@
-import { Info, ScanLine, ArrowUpRight, ShieldCheck } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useLang } from '@/lib/i18n';
-
-const steps = [
-  { icon: ScanLine, status: 'Ανενεργό στο prototype', title: 'Ανάγνωση λογαριασμού με AI', description: 'Στην παρουσίαση χρησιμοποιούμε μόνο συνθετικούς λογαριασμούς. Δεν επεξεργαζόμαστε πραγματικά έγγραφα. Η επαλήθευση γνησιότητας και οφειλής από τον πάροχο δεν είναι ενεργή.', en: { status: 'Off in this prototype', title: 'AI bill reading', description: 'The showcase uses synthetic bills only. We do not process real documents. Provider verification of authenticity and debt is not active.' } },
-  { icon: ArrowUpRight, status: 'Σχεδιαζόμενο · δεν είναι ενεργό', title: 'Απευθείας πληρωμές στον πάροχο', description: 'Η σύνδεση για πραγματικές μικρο-πληρωμές και επιβεβαίωση από τον πάροχο δεν έχει ενεργοποιηθεί. Σήμερα οι συνεισφορές είναι μόνο προσομοιώσεις: ενημερώνουν δοκιμαστικά υπόλοιπα και κατάταξη, χωρίς χρέωση ή μεταφορά χρημάτων.', en: { status: 'Planned · not active', title: 'Direct payments to the provider', description: 'Real micro-payments and provider confirmation are not switched on. Today contributions are simulations only: they update example balances and rankings, with no charge or money moved.' } },
-  { icon: ShieldCheck, status: 'Ισχύει σήμερα', title: '0% Προμήθεια & Διαφάνεια', description: 'Το BILLWIPER δεν εισπράττει χρήματα ή προμήθεια. Τυχόν πραγματικά αποδεικτικά παραμένουν σε αναμονή και δεν αλλάζουν πραγματικά υπόλοιπα χωρίς ανεξάρτητη επιβεβαίωση.', en: { status: 'True today', title: '0% fees & transparency', description: 'BILLWIPER collects no money or fees. Any real receipts stay pending and never change real balances without independent confirmation.' } },
-];
-
-export function TrustInfo() {
-  const { tr, lang } = useLang();
-  return <Dialog>
-    <DialogTrigger asChild>
-      <Button variant="ghost" className="trust-info-trigger"><Info size={12} />{tr('Πώς λειτουργεί;', 'How it works?')}</Button>
-    </DialogTrigger>
-    <DialogContent className="modal-content trust-info-modal">
-      <DialogTitle>{tr('Πώς λειτουργεί;', 'How it works?')}</DialogTitle>
-      <DialogDescription>{tr('Μια μικρή κίνηση. Με ξεκάθαρους όρους.', 'A small move. On clear terms.')}</DialogDescription>
-      <ol className="trust-steps">
-        {steps.map((step, index) => { const Icon = step.icon; const { status, title, description } = lang === 'en' ? step.en : step; return <li key={step.title}>
-          <span className="trust-step-icon"><Icon size={18} /></span>
-          <div><span className="trust-step-number">0{index + 1} · {status}</span><h3>{title}</h3><p>{description}</p></div>
-        </li>; })}
-      </ol>
-    </DialogContent>
-  </Dialog>;
-}
+import {Info} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {Dialog,DialogContent,DialogTitle,DialogDescription,DialogTrigger} from '@/components/ui/dialog';
+import {useLang} from '@/lib/i18n';
+export function TrustInfo(){const {tr}=useLang();return <Dialog><DialogTrigger asChild><Button variant="ghost" className="trust-info-trigger"><Info size={12}/>{tr('Πώς λειτουργεί με ασφάλεια','How it works safely')}</Button></DialogTrigger><DialogContent className="modal-content"><DialogTitle>{tr('Πώς λειτουργεί με ασφάλεια','How it works safely')}</DialogTitle><DialogDescription>{tr('Απευθείας πληρωμή, ξεκάθαρος έλεγχος.','Direct payment, transparent review.')}</DialogDescription><ol className="rf-instructions"><li>{tr('Διαχειριστής ελέγχει το ιδιωτικό έγγραφο και την ανώνυμη περιγραφή πριν δημοσιευθεί ο RF. Δεν υπάρχει αυτόματη επιβεβαίωση παρόχου.','An administrator reviews the private document and anonymous story before publishing its RF. There is no automatic provider confirmation.')}</li><li>{tr('Πληρώνεις από τη δική σου τράπεζα στον πάροχο. Το BILLWIPER δεν αγγίζει χρήματα, δεν ζητά στοιχεία κάρτας ή τραπεζικούς κωδικούς και δεν κρατά προμήθεια. Τυχόν τραπεζικές χρεώσεις είναι ξεχωριστές.','You pay from your own bank to the provider. BILLWIPER never handles funds, asks for card details or banking credentials, or collects commission. Bank charges are separate.')}</li><li>{tr('Η δήλωση πληρωμής και το προαιρετικό ιδιωτικό αποδεικτικό θέτουν τον λογαριασμό σε αναμονή. Εξόφληση σημειώνεται μόνο μετά από ανεξάρτητη επιβεβαίωση διαχειριστή.','A payment claim and optional private receipt put the bill on hold. Settlement is marked only after independent administrator confirmation.')}</li></ol></DialogContent></Dialog>;}

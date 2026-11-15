@@ -71,6 +71,13 @@
       "when": 1794753841190,
       "tag": "0009_retire_private_payment_rankings",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1794769080120,
+      "tag": "0010_rf_facilitation_workflow",
+      "breakpoints": true
     }
   ]
 }

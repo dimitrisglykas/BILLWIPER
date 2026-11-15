@@ -8,6 +8,7 @@ import {Button} from '@/components/ui/button';
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle} from '@/components/ui/alert-dialog';
 import {useAccount} from '@/components/billwiper/shell';
 import {useLang} from '@/lib/i18n';
+import {RFReviews} from '@/components/billwiper/rf-reviews';
 import {getAdminStatus,listSponsorInquiries,updateInquiryStatus,deleteSponsorInquiry} from '@/lib/admin.functions';
 import {filterInquiries,inquiryStatuses,type InquiryStatus,type InquiryRow} from '@/lib/sponsor-rules';
 
@@ -45,6 +46,7 @@ function Inquiries(){
  const del=useMutation({mutationFn:(id:string)=>remove({data:{id}}),onSuccess:()=>{setToDelete(null);qc.invalidateQueries({queryKey:['admin-inquiries']});toast.success(tr('Το αίτημα διαγράφηκε.','Inquiry deleted.'));},onError:()=>toast.error(tr('Η διαγραφή απέτυχε.','Delete failed.'))});
  const date=(s:string)=>new Date(s).toLocaleString(lang==='en'?'en-GB':'el-GR',{dateStyle:'medium',timeStyle:'short'});
  return <main className="page-content admin-page">
+  <RFReviews/>
   <div className="eyebrow">{tr('ΙΔΙΩΤΙΚΟΣ ΧΩΡΟΣ','PRIVATE AREA')}</div>
   <div className="admin-heading"><h1>{tr('Αιτήματα χορηγίας','Sponsor inquiries')}</h1><span className="prototype-pill"><ShieldCheck size={12}/>{tr('Πρόσβαση διαχειριστή','Administrator access')}</span></div><div className="admin-summary">{inquiryStatuses.map(s=><div key={s}><span className={`status-dot status-${s}`}/><span>{tr(...statusLabel[s])}</span><strong>{q.data?.filter(r=>r.status===s).length??0}</strong></div>)}</div>
   <div className="admin-toolbar form-row">
