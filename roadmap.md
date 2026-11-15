@@ -1,4 +1,5 @@
 # Billwiper
+- [ ] Clarify live versus planned trust services and verify footer clearance above mobile navigation
 - [x] Add portfolio footer attribution and concise trust modal without changing swipe cards
 - [x] Clean showcase presentation with truthful payment states
 - [x] Replace placeholder bills with five anonymous examples and consistent community totals
