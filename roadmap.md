@@ -1,4 +1,8 @@
 # Billwiper
+- [ ] Upgrade mobile layout, swipe controls, cards and prototype-only transparency without deleting data
+- [ ] Add participation-based demo XP, badges, weekly/city/creator challenges and shareable impact cards
+- [ ] Add fictional sponsor campaigns, budget simulator and impact dashboard
+- [ ] Verify navigation, mobile/tablet/desktop layouts and signed-in demo contribution flow
 - [x] Sweep all trust messages and footer paths for consistent live/planned service disclosure
 - [x] Clarify live versus planned trust services and verify footer clearance above mobile navigation
 - [x] Add portfolio footer attribution and concise trust modal without changing swipe cards
