@@ -1,6 +1,8 @@
 # Billwiper
-- [ ] Greek mobile-first swipe deck and uploaded branding
-- [ ] Cloud schema, private bill data, demo bills and leaderboard
-- [ ] Upload and payment receipt flows with honest verification states
-- [ ] Home-screen installability and sharing
-- [ ] Rule tests and mobile/desktop flow verification
+- [x] Greek mobile-first swipe deck and uploaded branding
+- [x] Cloud schema, private bill data, demo bills and leaderboard
+- [x] Upload and payment receipt submission with honest verification states
+- [x] Home-screen installability and sharing
+- [x] Rule tests and mobile/desktop demo flow verification
+- [ ] Authoritative real payment confirmation: needs bank/provider confirmation integration
+- [ ] Successful genuine-bill OCR end-to-end: needs a genuine test utility bill
