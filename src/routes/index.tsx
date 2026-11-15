@@ -8,7 +8,7 @@ import {feedQuery,type Bill} from '@/lib/feed-query';
 import {euros} from '@/lib/bill-rules';
 import {completeDemoBill,nextBillIndex} from '@/lib/deck-state';
 import {Payment} from '@/components/billwiper/payment';
-export const Route=createFileRoute('/')({loader:({context})=>context.queryClient.ensureQueryData(feedQuery),head:()=>({meta:[{title:'Billwiper — Σβήσε έναν λογαριασμό'},{name:'description',content:'Δώσε μια ανάσα σε ένα ελληνικό νοικοκυριό. Λογαριασμοί ΔΕΗ, ΕΥΔΑΠ, Cosmote και Protergia.'},{property:'og:title',content:'Billwiper — Swipe and wipe'},{property:'og:description',content:'Μια μικρή κίνηση, μια μεγάλη ανάσα.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Index});
+export const Route=createFileRoute('/')({loader:({context})=>context.queryClient.ensureQueryData(feedQuery),head:()=>({meta:[{title:'Billwiper — Σβήσε έναν λογαριασμό'},{name:'description',content:'Δώσε μια ανάσα σε ένα ελληνικό νοικοκυριό. Λογαριασμοί ΔΕΗ, ΕΥΔΑΠ, Cosmote και Protergia.'},{property:'og:title',content:'Billwiper — Swipe. Wipe. Change Lives.'},{property:'og:description',content:'Μια μικρή κίνηση, μια μεγάλη ανάσα.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Index});
 function BillCard({bill,onSkip,onPay}:{bill:Bill;onSkip:()=>void;onPay:()=>void}){
  const x=useMotionValue(0),rotate=useTransform(x,[-180,180],[-12,12]),wipeOpacity=useTransform(x,[30,100],[0,1]),skipOpacity=useTransform(x,[-100,-30],[1,0]);const reduced=useReducedMotion();
  const isWater=bill.provider==='ΕΥΔΑΠ',isPhone=bill.provider==='Cosmote';const Icon=isWater?Droplets:isPhone?Wifi:Zap;
