@@ -1,4 +1,6 @@
 # Billwiper
+- [ ] Repair reproduced mobile, navigation, account and error-state issues without redesign
+- [ ] Verify public and signed-in flows; record external hosting/auth and admin blockers
 - [x] Remove the rejected glass-checkmark artwork; preserve the supplied logo and verify the homepage
 - [x] Investigate officially supported managed Google OAuth on Vercel without changing auth settings
 - [ ] Connect custom-domain managed Google OAuth — domain connection requires owner confirmation
