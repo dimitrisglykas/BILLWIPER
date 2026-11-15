@@ -1,0 +1,1 @@
+ALTER POLICY sponsor_inquiries_insert_only ON public.sponsor_inquiries WITH CHECK (privacy_consent = true AND status = 'new');
