@@ -5,7 +5,7 @@ import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware';
 import type { Database } from '@/integrations/supabase/types';
 import { billIdentity, extractedBill } from './bill-rules';
 import { z } from 'zod';
-import {demoBillInput,contributionCents} from './contribution-rules';
+import {demoBillInput,contributionCents,canAddDemoBill} from './contribution-rules';
 import {assertRealProcessingAllowed} from './showcase-rules';
 
 export const getFeed=createServerFn({method:'GET'}).handler(async()=>{
@@ -47,6 +47,8 @@ export const submitReceipt=createServerFn({method:'POST'}).middleware([requireSu
 });
 export const createDemoBill=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((input:unknown)=>demoBillInput.parse(input)).handler(async({data,context})=>{
  const {supabaseAdmin}=await import('@/integrations/supabase/client.server');
+ const open=await supabaseAdmin.from('bills').select('id',{count:'exact',head:true}).eq('owner_id',context.userId).eq('is_demo',true).eq('status','OPEN');
+ if(open.error||!canAddDemoBill(open.count??0))throw new Error('Έχεις ήδη 3 ενεργά παραδείγματα στη ροή. Δοκίμασε ξανά όταν σβηστεί κάποιο.');
  const {data:bill,error}=await supabaseAdmin.from('bills').insert({owner_id:context.userId,...data,first_name:'Ανώνυμος',city:'Δοκιμή',note:'Δοκιμαστικός λογαριασμός — χωρίς πραγματική χρέωση.',is_demo:true,status:'OPEN',demo_remaining:data.amount}).select('id').single();
  if(error||!bill)throw new Error('Δεν αποθηκεύτηκε ο δοκιμαστικός λογαριασμός.');return bill;
 });
