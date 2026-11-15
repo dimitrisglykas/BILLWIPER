@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as UploadRouteImport } from './routes/upload'
 
@@ -36,6 +37,11 @@ const LeaderboardRoute = LeaderboardRouteImport.update({
   path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
   path: '/sponsors',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/impact': typeof ImpactRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sponsors': typeof SponsorsRoute
   '/upload': typeof UploadRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/impact': typeof ImpactRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sponsors': typeof SponsorsRoute
   '/upload': typeof UploadRoute
 }
@@ -69,21 +77,36 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/impact': typeof ImpactRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sponsors': typeof SponsorsRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/admin' | '/impact' | '/leaderboard' | '/sponsors' | '/upload'
+    | '/'
+    | '/admin'
+    | '/impact'
+    | '/leaderboard'
+    | '/reset-password'
+    | '/sponsors'
+    | '/upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/impact' | '/leaderboard' | '/sponsors' | '/upload'
+  to:
+    | '/'
+    | '/admin'
+    | '/impact'
+    | '/leaderboard'
+    | '/reset-password'
+    | '/sponsors'
+    | '/upload'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/impact'
     | '/leaderboard'
+    | '/reset-password'
     | '/sponsors'
     | '/upload'
   fileRoutesById: FileRoutesById
@@ -93,6 +116,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ImpactRoute: typeof ImpactRoute
   LeaderboardRoute: typeof LeaderboardRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SponsorsRoute: typeof SponsorsRoute
   UploadRoute: typeof UploadRoute
 }
@@ -127,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sponsors': {
       id: '/sponsors'
       path: '/sponsors'
@@ -149,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ImpactRoute: ImpactRoute,
   LeaderboardRoute: LeaderboardRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SponsorsRoute: SponsorsRoute,
   UploadRoute: UploadRoute,
 }

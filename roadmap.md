@@ -1,4 +1,10 @@
 # Billwiper
+- [ ] Connect custom-domain managed Google OAuth — domain connection requires owner confirmation
+- [x] Implement recovery completion and validation; approved-inbox request executed
+- [ ] Complete genuine email-link redemption and password update — approved QA account not found; minted-session update returned HTTP 500
+- [x] Retire public legacy payment rankings and test denied direct access
+- [x] Run unit and live privacy regressions without granting admin roles
+- [ ] Successful Google return/cancellation/persistence and authorized-admin browser tests — domain hosting unconnected; no admin roles may be assigned
 - [x] Refine shared design system, navigation, swipe deck, community, sponsors, upload and admin presentation
 - [x] Add private personal impact view using existing own-record permissions and honest achievement states
 - [x] Verify languages, mobile/tablet/desktop, sponsor submission and visitor/member/admin access

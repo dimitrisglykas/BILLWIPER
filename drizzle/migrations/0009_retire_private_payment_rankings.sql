@@ -1,0 +1,2 @@
+REVOKE ALL PRIVILEGES ON FUNCTION public.billwiper_leaders(boolean) FROM PUBLIC, anon, authenticated;
+COMMENT ON FUNCTION public.billwiper_leaders(boolean) IS 'DEPRECATED: retired from all application users, including admins, to prevent disclosure of profile-associated payment aggregates. No application dependencies; preserve historical data. Public showcase uses demo_wipe_rankings only.';

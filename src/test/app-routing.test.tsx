@@ -14,7 +14,7 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
-  it.each(['/upload','/leaderboard','/sponsors'])('matches the existing and new navigation destination %s',(path)=>{
+  it.each(['/upload','/leaderboard','/sponsors','/reset-password'])('matches the existing and new navigation destination %s',(path)=>{
     const router=createRouter({routeTree,context:{queryClient:new QueryClient()}});
     expect(router.matchRoutes(path).at(-1)?.routeId).toBe(path);
   });

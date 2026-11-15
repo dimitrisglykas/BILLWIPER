@@ -12,6 +12,7 @@ import {TrustFooter} from './trust-footer';
 import {EmailAuth} from './email-auth';
 import type { User } from '@supabase/supabase-js';
 import {useLang} from '@/lib/i18n';
+import {hasRecoveryError,setRecovery} from '@/lib/password-recovery';
 
 const Session=createContext<{user:User|null;openAccount:()=>void}>({user:null,openAccount:()=>{}});
 export const useAccount=()=>useContext(Session);
@@ -19,7 +20,7 @@ export function Brand(){return <div className="brand"><img className="brand-logo
 export function BillwiperShell({children}:{children:ReactNode}){
  const [user,setUser]=useState<User|null>(null),[account,setAccount]=useState(false),[username,setUsername]=useState(''),[city,setCity]=useState('');
  const router=useRouter(),queryClient=useQueryClient();const {lang,setLang,tr}=useLang();
- useEffect(()=>{void supabase.auth.getUser().then(({data})=>setUser(data.user));const {data}=supabase.auth.onAuthStateChange((event,session)=>{setUser(session?.user??null);if(['SIGNED_IN','SIGNED_OUT','USER_UPDATED'].includes(event)){void router.invalidate();if(event!=='SIGNED_OUT')void queryClient.invalidateQueries();}});return ()=>data.subscription.unsubscribe();},[router,queryClient]);
+ useEffect(()=>{if(window.location.pathname==='/reset-password'&&hasRecoveryError(window.location.hash,window.location.search)){setRecovery(null,true);window.history.replaceState(null,'','/reset-password');}const {data}=supabase.auth.onAuthStateChange((event,session)=>{setUser(session?.user??null);if(event==='PASSWORD_RECOVERY'&&session){setRecovery(session.user.id);setAccount(false);queueMicrotask(()=>{void router.navigate({to:'/reset-password',replace:true});});}if(event==='SIGNED_OUT')setRecovery(null);if(['SIGNED_IN','SIGNED_OUT','USER_UPDATED'].includes(event)){void router.invalidate();if(event!=='SIGNED_OUT')void queryClient.invalidateQueries();}});void supabase.auth.getUser().then(({data})=>setUser(data.user));return ()=>data.subscription.unsubscribe();},[router,queryClient]);
  useEffect(()=>{if(user)void supabase.from('profiles').select('username,city').eq('id',user.id).single().then(({data})=>{setUsername(data?.username??'');setCity(data?.city??'');});},[user]);
  useEffect(()=>{const channel=supabase.channel(`billwiper-live-${crypto.randomUUID()}`).on('postgres_changes',{event:'*',schema:'public',table:'bills'},()=>{void queryClient.invalidateQueries({queryKey:['billwiper-feed']});}).subscribe();return()=>{void supabase.removeChannel(channel);};},[queryClient]);
  async function signIn(provider:'google'){const result=await lovable.auth.signInWithOAuth(provider,{redirect_uri:window.location.origin});if(result.error)toast.error(tr('Η σύνδεση δεν ολοκληρώθηκε.','Sign-in was not completed.'));else if(!result.redirected)setAccount(false);}
