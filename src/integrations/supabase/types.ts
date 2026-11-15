@@ -40,10 +40,52 @@ export type Database = {
           },
         ]
       }
+      bill_submissions: {
+        Row: {
+          bill_id: string
+          city: string
+          created_at: string
+          document_path: string
+          owner_id: string
+          raw_story: string
+          rf_code: string
+          terms_consent: boolean
+        }
+        Insert: {
+          bill_id: string
+          city: string
+          created_at?: string
+          document_path: string
+          owner_id: string
+          raw_story: string
+          rf_code: string
+          terms_consent?: boolean
+        }
+        Update: {
+          bill_id?: string
+          city?: string
+          created_at?: string
+          document_path?: string
+          owner_id?: string
+          raw_story?: string
+          rf_code?: string
+          terms_consent?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bill_submissions_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: true
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       bills: {
         Row: {
           amount: number
           city: string
+          confirmation_note: string | null
           created_at: string
           demo_remaining: number | null
           due_date: string | null
@@ -53,12 +95,18 @@ export type Database = {
           note: string
           owner_id: string | null
           provider: string
+          public_city: string | null
           public_description: string
+          rf_code: string | null
+          rf_provider: string | null
+          rf_status: string | null
           status: string
+          story: string | null
         }
         Insert: {
           amount: number
           city: string
+          confirmation_note?: string | null
           created_at?: string
           demo_remaining?: number | null
           due_date?: string | null
@@ -68,12 +116,18 @@ export type Database = {
           note: string
           owner_id?: string | null
           provider: string
+          public_city?: string | null
           public_description?: string
+          rf_code?: string | null
+          rf_provider?: string | null
+          rf_status?: string | null
           status?: string
+          story?: string | null
         }
         Update: {
           amount?: number
           city?: string
+          confirmation_note?: string | null
           created_at?: string
           demo_remaining?: number | null
           due_date?: string | null
@@ -83,8 +137,13 @@ export type Database = {
           note?: string
           owner_id?: string | null
           provider?: string
+          public_city?: string | null
           public_description?: string
+          rf_code?: string | null
+          rf_provider?: string | null
+          rf_status?: string | null
           status?: string
+          story?: string | null
         }
         Relationships: []
       }
@@ -228,6 +287,38 @@ export type Database = {
         }
         Relationships: []
       }
+      verifications: {
+        Row: {
+          bill_id: string
+          created_at: string
+          id: string
+          receipt_image_url: string | null
+          user_id: string
+        }
+        Insert: {
+          bill_id: string
+          created_at?: string
+          id?: string
+          receipt_image_url?: string | null
+          user_id: string
+        }
+        Update: {
+          bill_id?: string
+          created_at?: string
+          id?: string
+          receipt_image_url?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verifications_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: true
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       wipes: {
         Row: {
           amount: number
@@ -280,6 +371,10 @@ export type Database = {
           username: string
         }[]
       }
+      claim_rf_payment: {
+        Args: { p_bill: string; p_receipt?: string }
+        Returns: string
+      }
       demo_wipe_rankings: {
         Args: never
         Returns: {
@@ -301,6 +396,30 @@ export type Database = {
         Args: { p_amount: number; p_bill_id: string; p_request_id: string }
         Returns: number
       }
+      review_rf_bill: {
+        Args: {
+          p_action: string
+          p_bill: string
+          p_city?: string
+          p_note?: string
+          p_story?: string
+        }
+        Returns: boolean
+      }
+      submit_rf_bill: {
+        Args: {
+          p_amount: number
+          p_city: string
+          p_consent: boolean
+          p_due: string
+          p_path: string
+          p_provider: string
+          p_rf: string
+          p_story: string
+        }
+        Returns: string
+      }
+      valid_facilitation_rf: { Args: { code: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
