@@ -37,3 +37,5 @@ use the editor.
 - Use manifest-only installability without offline caching, so financial data cannot be served from a stale app shell.
 - Use session-scoped CSS perspective intro and transform/opacity motion without WebGL; keep deck progression in tested browser-safe helpers and demo completion isolated from real totals.
 - AI extraction uses the generated Google chat contract through Lovable Gateway inside a server function; validate extracted RF checksums before publishing.
+
+- Serve the shared header and intro logo from `/billwiper-logo.png` in public so it works without Lovable asset-serving infrastructure.
