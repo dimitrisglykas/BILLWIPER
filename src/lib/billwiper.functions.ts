@@ -10,7 +10,7 @@ import {demoBillInput,contributionCents} from './contribution-rules';
 export const getFeed=createServerFn({method:'GET'}).handler(async()=>{
  const key=process.env['SUPABASE_PUBLISHABLE_KEY']!;
  const db=createClient<Database>(process.env['SUPABASE_URL']!,key,{auth:{persistSession:false,autoRefreshToken:false},global:{fetch:(input,init)=>{const headers=new Headers(init?.headers); if(headers.get('Authorization')===`Bearer ${key}`) headers.delete('Authorization'); headers.set('apikey',key);return fetch(input,{...init,headers});}}});
- const [bills,leaders,total]=await Promise.all([db.from('bills').select('id,provider,note,amount,due_date,is_demo,status,demo_remaining').eq('status','OPEN').order('created_at'),db.rpc('demo_wipe_rankings'),db.rpc('demo_wipe_total')]);
+ const [bills,leaders,total]=await Promise.all([db.from('bills').select('id,provider,amount,due_date,is_demo,status,demo_remaining').eq('status','OPEN').order('created_at'),db.rpc('demo_wipe_rankings'),db.rpc('demo_wipe_total')]);
  if(bills.error||leaders.error||total.error)throw new Error('Δεν μπορέσαμε να φορτώσουμε τους λογαριασμούς.');
  return {bills:(bills.data??[]).map(b=>({...b,amount:b.is_demo?Number(b.demo_remaining??b.amount):Number(b.amount),note:b.is_demo?'Δοκιμαστικός λογαριασμός — χωρίς πραγματική χρέωση.':'Λογαριασμός κοινής ωφέλειας — κάθε βοήθεια μετράει.'})),leaders:(leaders.data??[]).map((p,i)=>({...p,id:i,city:'Δοκιμαστική προσφορά'})),demoTotal:Number(total.data??0),realLeaders:[]};
 });
