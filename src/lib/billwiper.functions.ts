@@ -7,6 +7,7 @@ import { billIdentity, extractedBill } from './bill-rules';
 import { z } from 'zod';
 import {demoBillInput,contributionCents,canAddDemoBill} from './contribution-rules';
 import {assertRealProcessingAllowed} from './showcase-rules';
+import {sponsorInquiry} from './sponsor-rules';
 
 export const getFeed=createServerFn({method:'GET'}).handler(async()=>{
  const key=process.env['SUPABASE_PUBLISHABLE_KEY']!;
@@ -57,4 +58,12 @@ export const recordDemoWipe=createServerFn({method:'POST'}).middleware([requireS
  if(!bill)throw new Error('Ο λογαριασμός δεν είναι διαθέσιμος.');contributionCents(data.amount,Math.max(Number(bill.amount),Number(bill.demo_remaining??bill.amount)),bill.is_demo);
  const {data:remaining,error}=await context.supabase.rpc('record_demo_wipe',{p_bill_id:data.bill_id,p_amount:data.amount,p_request_id:data.request_id});
  if(error)throw new Error('Η δοκιμαστική συνεισφορά δεν αποθηκεύτηκε. Έλεγξε το υπόλοιπο.');return {remaining:Number(remaining)};
+});
+
+export const submitSponsorInquiry=createServerFn({method:'POST'}).inputValidator((input:unknown)=>sponsorInquiry.parse(input)).handler(async({data})=>{
+ const key=process.env['SUPABASE_PUBLISHABLE_KEY']!;
+ const db=createClient<Database>(process.env['SUPABASE_URL']!,key,{auth:{persistSession:false,autoRefreshToken:false},global:{fetch:(input,init)=>{const headers=new Headers(init?.headers); if(headers.get('Authorization')===`Bearer ${key}`) headers.delete('Authorization'); headers.set('apikey',key);return fetch(input,{...init,headers});}}});
+ const {error}=await db.from('sponsor_inquiries').insert(data);
+ if(error){console.error('sponsor inquiry insert failed',error.code);throw new Error('Δεν ήταν δυνατή η αποστολή. Δοκίμασε ξανά.');}
+ return {ok:true};
 });
