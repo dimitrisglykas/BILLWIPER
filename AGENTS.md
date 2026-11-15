@@ -35,4 +35,5 @@ use the editor.
 - Receipt uploads remain pending until authoritative payment confirmation; demo completion must not modify real payments or rankings.
 - Public demo rankings require explicit is_public_demo approval; default new entries to private so future rows cannot leak through the example-data policy.
 - Use manifest-only installability without offline caching, so financial data cannot be served from a stale app shell.
+- Use session-scoped CSS perspective intro and transform/opacity motion without WebGL; keep deck progression in tested browser-safe helpers and demo completion isolated from real totals.
 - AI extraction uses the generated Google chat contract through Lovable Gateway inside a server function; validate extracted RF checksums before publishing.
