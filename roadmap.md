@@ -1,4 +1,5 @@
 # Billwiper
+- [x] Verify reset-to-registration switching and hide managed Google sign-in outside lovable.app without changing auth settings
 - [x] Repair reproduced mobile clearance, centered cancellation, account return focus and bilingual error states without redesign
 - [x] Patch scanned production dependency advisories and run validation/privacy regressions
 - [x] Verify public and ordinary-member flows with persisted synthetic contribution; remove QA data
