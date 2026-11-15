@@ -53,6 +53,7 @@ export type Database = {
           note: string
           owner_id: string | null
           provider: string
+          public_description: string
           status: string
         }
         Insert: {
@@ -67,6 +68,7 @@ export type Database = {
           note: string
           owner_id?: string | null
           provider: string
+          public_description?: string
           status?: string
         }
         Update: {
@@ -81,6 +83,7 @@ export type Database = {
           note?: string
           owner_id?: string | null
           provider?: string
+          public_description?: string
           status?: string
         }
         Relationships: []
