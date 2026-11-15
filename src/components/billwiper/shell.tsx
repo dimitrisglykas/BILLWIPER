@@ -1,7 +1,7 @@
 import { createContext,useContext,useEffect,useState,type ReactNode } from 'react';
 import { Link,useRouter } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
-import { Crown,Layers,PlusCircle,Trophy,LogOut } from 'lucide-react';
+import { Crown,Layers,PlusCircle,Trophy,LogOut,Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog,DialogContent,DialogTitle,DialogDescription } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
