@@ -1,4 +1,7 @@
 # Billwiper
+- [ ] Premium visual refresh, session intro, supplied transparent logo
+- [ ] Google/email-only sign-in and smooth deck completion/cancellation
+- [ ] Mobile/desktop interaction verification and rule tests
 - [x] Greek mobile-first swipe deck and uploaded branding
 - [x] Cloud schema, private bill data, demo bills and leaderboard
 - [x] Upload and payment receipt submission with honest verification states

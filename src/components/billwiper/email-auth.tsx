@@ -1,0 +1,13 @@
+import {useState,type FormEvent} from 'react';
+import {ArrowRight,LoaderCircle,Mail} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {supabase} from '@/integrations/supabase/client';
+export function EmailAuth({onSignedIn}:{onSignedIn:()=>void}){
+ const [mode,setMode]=useState<'signin'|'signup'|'reset'>('signin');const [busy,setBusy]=useState(false);const [message,setMessage]=useState('');
+ async function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();const form=new FormData(event.currentTarget);const email=String(form.get('email')??'');const password=String(form.get('password')??'');setBusy(true);setMessage('');try{
+ if(mode==='reset'){const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});if(error)throw error;setMessage('Στάλθηκε σύνδεσμος επαναφοράς στο email σου.');}
+ else if(mode==='signup'){const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin}});if(error)throw error;if(data.session)onSignedIn();else setMessage('Έλεγξε το email σου για να επιβεβαιώσεις την εγγραφή.');}
+ else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;onSignedIn();}
+ }catch{setMessage(mode==='signin'?'Η σύνδεση απέτυχε. Έλεγξε email και κωδικό.':'Δεν ολοκληρώθηκε το αίτημα. Δοκίμασε ξανά.');}finally{setBusy(false);}}
+ return <><div className="auth-divider"><span>ή με email</span></div><div className="auth-modes"><Button variant={mode==='signin'?'secondary':'ghost'} onClick={()=>{setMode('signin');setMessage('');}}>Σύνδεση</Button><Button variant={mode==='signup'?'secondary':'ghost'} onClick={()=>{setMode('signup');setMessage('');}}>Εγγραφή</Button></div><form className="email-auth" onSubmit={submit}><div className="field"><label htmlFor="auth-email">Email</label><input id="auth-email" name="email" type="email" autoComplete="email" required placeholder="you@example.com"/></div>{mode!=='reset'&&<div className="field"><label htmlFor="auth-password">Κωδικός</label><input id="auth-password" name="password" type="password" minLength={6} autoComplete={mode==='signup'?'new-password':'current-password'} required/></div>}{message&&<p role="status" className="auth-status">{message}</p>}<Button disabled={busy} type="submit">{busy?<LoaderCircle className="animate-spin"/>:<Mail/>}{mode==='signup'?'Δημιουργία λογαριασμού':mode==='reset'?'Αποστολή συνδέσμου':'Σύνδεση με email'}<ArrowRight/></Button>{mode!=='reset'&&<Button type="button" variant="ghost" onClick={()=>{setMode('reset');setMessage('');}}>Ξέχασες τον κωδικό;</Button>}</form></>;
+}
