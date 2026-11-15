@@ -1,4 +1,5 @@
 # Billwiper
+- [ ] Sweep all trust messages and footer paths for consistent live/planned service disclosure
 - [x] Clarify live versus planned trust services and verify footer clearance above mobile navigation
 - [x] Add portfolio footer attribution and concise trust modal without changing swipe cards
 - [x] Clean showcase presentation with truthful payment states
