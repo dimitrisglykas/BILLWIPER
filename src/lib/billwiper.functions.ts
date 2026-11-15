@@ -46,20 +46,8 @@ export const submitReceipt=createServerFn({method:'POST'}).middleware([requireSu
  if(error) throw new Error('Έχει ήδη υποβληθεί αποδεικτικό ή η υποβολή απέτυχε.');
  return {status:'PENDING' as const};
 });
-export const createDemoBill=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((input:unknown)=>demoBillInput.parse(input)).handler(async({data,context})=>{
- throw new Error('SIMULATIONS_RETIRED');
- const {supabaseAdmin}=await import('@/integrations/supabase/client.server');
- const open=await supabaseAdmin.from('bills').select('id',{count:'exact',head:true}).eq('owner_id',context.userId).eq('is_demo',true).eq('status','OPEN');
- if(open.error||!canAddDemoBill(open.count??0))throw new Error('Έχεις ήδη 3 ενεργά παραδείγματα στη ροή. Δοκίμασε ξανά όταν σβηστεί κάποιο.');
- const {data:bill,error}=await supabaseAdmin.from('bills').insert({owner_id:context.userId,...data,first_name:'Ανώνυμος',city:'Δοκιμή',note:'Δοκιμαστικός λογαριασμός — χωρίς πραγματική χρέωση.',is_demo:true,status:'OPEN',demo_remaining:data.amount}).select('id').single();
- if(error||!bill)throw new Error('Δεν αποθηκεύτηκε ο δοκιμαστικός λογαριασμός.');return bill;
-});
-export const recordDemoWipe=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((input:unknown)=>z.object({bill_id:z.string().uuid(),amount:z.number(),request_id:z.string().uuid()}).parse(input)).handler(async({data,context})=>{
- const {data:bill}=await context.supabase.from('bills').select('amount,demo_remaining,is_demo').eq('id',data.bill_id).single();
- if(!bill)throw new Error('Ο λογαριασμός δεν είναι διαθέσιμος.');contributionCents(data.amount,Math.max(Number(bill.amount),Number(bill.demo_remaining??bill.amount)),bill.is_demo);
- const {data:remaining,error}=await context.supabase.rpc('record_demo_wipe',{p_bill_id:data.bill_id,p_amount:data.amount,p_request_id:data.request_id});
- if(error)throw new Error('Η δοκιμαστική συνεισφορά δεν αποθηκεύτηκε. Έλεγξε το υπόλοιπο.');return {remaining:Number(remaining)};
-});
+export const createDemoBill=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((input:unknown)=>demoBillInput.parse(input)).handler(async()=>{throw new Error('SIMULATIONS_RETIRED');});
+export const recordDemoWipe=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((input:unknown)=>z.object({bill_id:z.string().uuid(),amount:z.number(),request_id:z.string().uuid()}).parse(input)).handler(async()=>{throw new Error('SIMULATIONS_RETIRED');});
 
 export const submitSponsorInquiry=createServerFn({method:'POST'}).inputValidator((input:unknown)=>sponsorInquiry.parse(input)).handler(async({data})=>{
  const key=process.env['SUPABASE_PUBLISHABLE_KEY']!;

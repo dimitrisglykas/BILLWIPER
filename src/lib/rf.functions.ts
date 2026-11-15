@@ -22,7 +22,7 @@ export const submitRFBill=createServerFn({method:'POST'}).middleware([requireSup
 });
 export const claimRFPayment=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((i:unknown)=>receiptInput.parse(i)).handler(async({data,context})=>{
  if(data.receipt_path){const file=await context.supabase.storage.from('rf-documents').download(data.receipt_path);if(file.error||!file.data||file.data.size>10*1024*1024)throw new Error('INVALID_RECEIPT');}
- const {error}=await context.supabase.rpc('claim_rf_payment',{p_bill:data.bill_id,p_receipt:data.receipt_path??undefined});
+ const {error}=await context.supabase.rpc('claim_rf_payment',{p_bill:data.bill_id,...(data.receipt_path?{p_receipt:data.receipt_path}:{})});
  if(error)throw new Error('BILL_UNAVAILABLE');return {status:'pending_verification' as const};
 });
 export const listRFReviews=createServerFn({method:'GET'}).middleware([requireSupabaseAuth]).handler(async({context})=>{
@@ -32,7 +32,7 @@ export const listRFReviews=createServerFn({method:'GET'}).middleware([requireSup
  return (bills.data??[]).map(b=>({...b,submission:submissions.data?.find(s=>s.bill_id===b.id),receipt:receipts.data?.find(r=>r.bill_id===b.id)}));
 });
 export const reviewRFBill=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((i:unknown)=>reviewInput.parse(i)).handler(async({data,context})=>{
- const {error}=await context.supabase.rpc('review_rf_bill',{p_bill:data.bill_id,p_action:data.action,p_story:data.action==='approve'?data.story:undefined,p_city:data.action==='approve'?data.city:undefined,p_note:data.action==='paid'?data.note:undefined});
+ const {error}=await context.supabase.rpc('review_rf_bill',{p_bill:data.bill_id,p_action:data.action,...(data.action==='approve'?{p_story:data.story,p_city:data.city}:{p_note:data.note})});
  if(error)throw new Error('REVIEW_FAILED');return {ok:true};
 });
 export const getPrivateRFFile=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((i:unknown)=>z.object({path:z.string().min(1).max(300)}).parse(i)).handler(async({data,context})=>{

@@ -60,3 +60,8 @@ use the editor.
 - Retire unused real-payment ranking functions by removing visitor/member execution, preserving definitions and historical rows; public rankings remain synthetic-only.
 - Resolve the shared validation dependency to the patched version across tooling and application schemas; keep concrete rule tests to prevent validation changes during security updates.
 - Determine managed Google button availability from the hydrated hostname using an exact hosting-domain boundary; external hosting lacks managed OAuth handlers, and server rendering must not guess the browser origin.
+
+## RF facilitation workflow
+- Current bill workflows use additive RF state columns and authenticated atomic SQL functions; legacy bill states and simulation records stay stored but are excluded from current feeds and contribution entry points.
+- Publish RF codes only after role-authorised review; raw stories, documents and receipts remain separately stored with owner/admin access, because original uploads can contain personal information.
+- Bank payments happen outside the app; claims atomically hide active bills and only role-authorised independent confirmation can mark paid, because a receipt is not settlement evidence by itself.
