@@ -49,3 +49,4 @@ use the editor.
 - Derive demo XP from recorded distinct bill participation, never contributed amounts; keep verified-impact rankings empty until authoritative verification exists.
 - Keep fictional sponsor scenarios and share cards in client-safe presentation modules; projected budgets must never enter contribution totals or persisted payment records.
 - Cap open example bills per user in the authenticated create function, so the shared showcase feed cannot be flooded.
+- Translate UI through the shared language context (inline Greek/English pairs, shared dictionary for module data, sample stories and server messages); Greek stays the server-rendered default to avoid hydration mismatches.
