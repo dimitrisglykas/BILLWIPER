@@ -7,7 +7,7 @@ import {syntheticCity} from '@/lib/showcase-rules';
 import {fundingProgress,providerCategory} from '@/lib/card-presentation';
 import {useLang} from '@/lib/i18n';
 export function BillCard({bill,onSkip,onPay,exiting=false}:{bill:Bill;onSkip:()=>void;onPay:()=>void;exiting?:boolean}){
- const x=useMotionValue(0),rotate=useTransform(x,[-200,200],[-9,12]),wipeOpacity=useTransform(x,[20,120],[0,1]),skipOpacity=useTransform(x,[-120,-20],[1,0]);const reduced=useReducedMotion();const {tr}=useLang();
+ const x=useMotionValue(0),rotate=useTransform(x,[-200,0,200],[-9,0,12]),wipeOpacity=useTransform(x,[20,120],[0,1]),skipOpacity=useTransform(x,[-120,-20],[1,0]);const reduced=useReducedMotion();const {tr}=useLang();
  const category=providerCategory(bill.provider),Icon=category==='water'?Droplets:category==='telecom'?Wifi:category==='heating'?Flame:Zap;
  const progress=fundingProgress(bill.goal_amount,bill.amount);
  useEffect(()=>{if(exiting){const control=animate(x,reduced?0:650,{duration:reduced?0:.38,ease:[.2,.7,.2,1]});return ()=>control.stop();}return undefined;},[exiting,reduced,x]);
