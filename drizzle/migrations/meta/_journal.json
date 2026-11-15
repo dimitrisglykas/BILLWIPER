@@ -50,6 +50,20 @@
       "when": 1794750113468,
       "tag": "0006_sponsor_inquiries_admin_access",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794750434435,
+      "tag": "0007_sponsor_inquiry_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794750443864,
+      "tag": "0008_sponsor_inquiry_insert_status_new",
+      "breakpoints": true
     }
   ]
 }

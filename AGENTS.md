@@ -53,3 +53,4 @@ use the editor.
 
 - Sponsor interest submissions go through a validated server function into an insert-only table; no public read policy, so contact details stay private.
 - Admin access uses a separate roles table checked by a security-definer has_role function; never store roles on profiles.
+- /admin is client-only and noindex; its data comes only from authenticated server functions that re-check has_role, backed by admin-only RLS on sponsor_inquiries.

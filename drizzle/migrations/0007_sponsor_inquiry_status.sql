@@ -1,0 +1,2 @@
+ALTER TABLE public.sponsor_inquiries ADD COLUMN status text NOT NULL DEFAULT 'new' CHECK (status IN ('new','contacted','in_discussion','closed'));
+CREATE INDEX sponsor_inquiries_created_idx ON public.sponsor_inquiries(created_at DESC);
