@@ -56,3 +56,5 @@ use the editor.
 - /admin is client-only and noindex; its data comes only from authenticated server functions that re-check has_role, backed by admin-only RLS on sponsor_inquiries.
 - Personal impact reads only the signed-in user's simulated wipe projection through existing own-row RLS; never infer verified results from historical payment statuses without authoritative confirmation.
 - Apply the shared luxury presentation layer through global semantic tokens and existing controls, leaving server functions, contribution rules and database policies unchanged.
+- Password recovery is a public client-only route authorized only by the SDK recovery event and revalidated user; keep recovery authorization in memory, never infer it from ordinary sessions or editable storage.
+- Retire unused real-payment ranking functions by removing visitor/member execution, preserving definitions and historical rows; public rankings remain synthetic-only.

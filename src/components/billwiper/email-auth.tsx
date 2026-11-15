@@ -6,7 +6,7 @@ import {useLang} from '@/lib/i18n';
 export function EmailAuth({onSignedIn}:{onSignedIn:()=>void}){
  const [mode,setMode]=useState<'signin'|'signup'|'reset'>('signin');const [busy,setBusy]=useState(false);const [message,setMessage]=useState('');const {tr}=useLang();
  async function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();const form=new FormData(event.currentTarget);const email=String(form.get('email')??'');const password=String(form.get('password')??'');setBusy(true);setMessage('');try{
- if(mode==='reset'){const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});if(error)throw error;setMessage(tr('Στάλθηκε σύνδεσμος επαναφοράς στο email σου.','A reset link was sent to your email.'));}
+ if(mode==='reset'){const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+'/reset-password'});if(error)throw error;setMessage(tr('Αν υπάρχει λογαριασμός με αυτό το email, θα λάβεις σύνδεσμο επαναφοράς.','If an account exists for this email, you will receive a reset link.'));}
  else if(mode==='signup'){const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin}});if(error)throw error;if(data.session)onSignedIn();else setMessage(tr('Έλεγξε το email σου για να επιβεβαιώσεις την εγγραφή.','Check your email to confirm your sign-up.'));}
  else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;onSignedIn();}
  }catch{setMessage(mode==='signin'?tr('Η σύνδεση απέτυχε. Έλεγξε email και κωδικό.','Sign-in failed. Check your email and password.'):tr('Δεν ολοκληρώθηκε το αίτημα. Δοκίμασε ξανά.','The request did not complete. Please try again.'));}finally{setBusy(false);}}
