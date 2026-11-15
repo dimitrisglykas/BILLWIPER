@@ -10,3 +10,6 @@
 - [x] Rule tests and mobile/desktop demo flow verification
 - [ ] Authoritative real payment confirmation: needs bank/provider confirmation integration
 - [ ] Successful genuine-bill OCR end-to-end: needs a genuine test utility bill
+- [ ] Persist isolated demo uploads and full/partial wipes, with live counters and rankings
+- [ ] Anonymous cards, upload privacy guidance, and trust footer drawers
+- [ ] Verify signed-in persistence, permission boundaries, and mobile/desktop flows
