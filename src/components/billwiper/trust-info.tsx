@@ -3,9 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const steps = [
-  { icon: ScanLine, title: 'AI OCR Επιβεβαίωση Λογαριασμού', description: 'Η AI διαβάζει τα στοιχεία και ελέγχει τη μορφή και το ψηφίο ελέγχου RF — όχι την οφειλή στον πάροχο.' },
-  { icon: ArrowUpRight, title: 'Απευθείας Μικρο-πληρωμές στον Πάροχο', description: 'Οι πραγματικές πληρωμές γίνονται στον επίσημο RF του παρόχου. Τα αποδεικτικά παραμένουν σε αναμονή μέχρι την επιβεβαίωση.' },
-  { icon: ShieldCheck, title: '0% Προμήθεια & Απόλυτη Διαφάνεια', description: 'Το BILLWIPER δεν εισπράττει χρήματα ή προμήθεια. Οι συνεισφορές της παρουσίασης είναι προσομοιώσεις, χωρίς πραγματική χρέωση.' },
+  { icon: ScanLine, status: 'Διαθέσιμο · ανάγνωση στοιχείων', title: 'Ανάγνωση λογαριασμού με AI', description: 'Η AI εξάγει στοιχεία και ελέγχεται η μορφή και το ψηφίο ελέγχου RF. Αυτό δεν επιβεβαιώνει τη γνησιότητα ή την οφειλή. Η επαλήθευση από τον πάροχο είναι σχεδιαζόμενη, όχι ενεργή υπηρεσία.' },
+  { icon: ArrowUpRight, status: 'Σχεδιαζόμενο · δεν είναι ενεργό', title: 'Απευθείας πληρωμές στον πάροχο', description: 'Η σύνδεση για πραγματικές μικρο-πληρωμές και επιβεβαίωση από τον πάροχο δεν έχει ενεργοποιηθεί. Σήμερα οι συνεισφορές είναι μόνο προσομοιώσεις: ενημερώνουν δοκιμαστικά υπόλοιπα και κατάταξη, χωρίς χρέωση ή μεταφορά χρημάτων.' },
+  { icon: ShieldCheck, status: 'Ισχύει σήμερα', title: '0% Προμήθεια & Διαφάνεια', description: 'Το BILLWIPER δεν εισπράττει χρήματα ή προμήθεια. Τυχόν πραγματικά αποδεικτικά παραμένουν σε αναμονή και δεν αλλάζουν πραγματικά υπόλοιπα χωρίς ανεξάρτητη επιβεβαίωση.' },
 ];
 
 export function TrustInfo() {
@@ -17,9 +17,9 @@ export function TrustInfo() {
       <DialogTitle>Πώς λειτουργεί;</DialogTitle>
       <DialogDescription>Μια μικρή κίνηση. Με ξεκάθαρους όρους.</DialogDescription>
       <ol className="trust-steps">
-        {steps.map(({ icon: Icon, title, description }, index) => <li key={title}>
+        {steps.map(({ icon: Icon, status, title, description }, index) => <li key={title}>
           <span className="trust-step-icon"><Icon size={18} /></span>
-          <div><span className="trust-step-number">0{index + 1}</span><h3>{title}</h3><p>{description}</p></div>
+          <div><span className="trust-step-number">0{index + 1} · {status}</span><h3>{title}</h3><p>{description}</p></div>
         </li>)}
       </ol>
     </DialogContent>

@@ -15,7 +15,7 @@ export function BillCard({bill,onSkip,onPay,exiting=false}:{bill:Bill;onSkip:()=
  <div className="amount-section"><span className="amount-label">Υπόλοιπο λογαριασμού</span><div className="bill-amount tabular-nums">{bill.amount.toFixed(2).replace('.',',')}<span className="currency">€</span></div></div>
  <p className="bill-note">{bill.note}</p>
  <div className="funding-section"><div className="funding-label"><span>{euros(progress.wiped)} <span className="text-muted-foreground">/ {euros(progress.goal)} σβησμένα</span></span><span className="funding-percent">{Math.round(progress.fraction*100)}%</span></div><div className="funding-track" role="progressbar" aria-label="Πρόοδος εξόφλησης" aria-valuemin={0} aria-valuemax={progress.goal} aria-valuenow={progress.wiped}><motion.div className="funding-fill" initial={false} animate={{scaleX:progress.fraction}} transition={{duration:reduced?0:.35}}/></div></div>
- <div className="bill-footer"><span className="verified"><ShieldCheck size={13}/>{bill.is_demo?'Ανώνυμα στοιχεία':'Επαληθευμένος κωδικός RF'}</span><span className="due">{bill.due_date?`Λήξη ${bill.due_date.split('-').reverse().slice(0,2).join('/')}`:''}</span></div>
+ <div className="bill-footer"><span className="verified"><ShieldCheck size={13}/>{bill.is_demo?'Ανώνυμα στοιχεία':'Έλεγχος μορφής RF'}</span><span className="due">{bill.due_date?`Λήξη ${bill.due_date.split('-').reverse().slice(0,2).join('/')}`:''}</span></div>
  <motion.div className="stamp" style={{opacity:wipeOpacity}}><Check size={21}/>ΣΒΗΣΕ</motion.div><motion.div className="stamp skip" style={{opacity:skipOpacity}}>ΕΠΟΜΕΝΟ<ArrowRight size={20}/></motion.div>
  </motion.article>;
 }
