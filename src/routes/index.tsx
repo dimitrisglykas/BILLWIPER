@@ -1,19 +1,19 @@
 import {createFileRoute,Link} from '@tanstack/react-router';
-import {useSuspenseQuery} from '@tanstack/react-query';
+import {useSuspenseQuery,useQueryClient} from '@tanstack/react-query';
 import {useEffect,useRef,useState} from 'react';
 import {motion,useReducedMotion} from 'framer-motion';
 import {Zap,Droplets,Wifi,MapPin,ShieldCheck,X,ArrowUpRight,Heart,Check,RotateCcw} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {feedQuery,type Bill} from '@/lib/feed-query';
 import {euros} from '@/lib/bill-rules';
-import {nextBillIndex} from '@/lib/deck-state';
+import {nextBillIndex,indexAfterContribution} from '@/lib/deck-state';
 import {Payment} from '@/components/billwiper/payment';
 import {BillCard} from '@/components/billwiper/bill-card';
 import {ImpactStats} from '@/components/billwiper/impact-stats';
 import {TrustInfo} from '@/components/billwiper/trust-info';
 export const Route=createFileRoute('/')({loader:({context})=>context.queryClient.ensureQueryData(feedQuery),head:()=>({meta:[{title:'Billwiper — Σβήσε έναν λογαριασμό'},{name:'description',content:'Δώσε μια ανάσα σε ένα ελληνικό νοικοκυριό. Λογαριασμοί ΔΕΗ, ΕΥΔΑΠ, Cosmote και Protergia.'},{property:'og:title',content:'Billwiper — Swipe. Wipe. Change Lives.'},{property:'og:description',content:'Μια μικρή κίνηση, μια μεγάλη ανάσα.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Index});
 function Index(){
- const {data}=useSuspenseQuery(feedQuery);const [index,setIndex]=useState(0),[payment,setPayment]=useState<Bill|null>(null),[departing,setDeparting]=useState<Bill|null>(null);const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const reduced=useReducedMotion();
+ const {data}=useSuspenseQuery(feedQuery);const query=useQueryClient();const [index,setIndex]=useState(0),[payment,setPayment]=useState<Bill|null>(null),[departing,setDeparting]=useState<Bill|null>(null);const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const reduced=useReducedMotion();
  useEffect(()=>()=>{if(timer.current)clearTimeout(timer.current);},[]);
  const bills=data.bills;const bill=departing??bills[index];
  function next(){if(departing||payment)return;setIndex(nextBillIndex(bills,index,[]));}
