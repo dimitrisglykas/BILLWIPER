@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## App architecture
+- Keep the compact swipe trust dialog in a presentation-only component; explain OCR limitations and simulated payments without changing payment logic.
 - Public content lives on three TanStack routes with a shared shell; keep protected mutations in authenticated server functions.
 - Store anonymous bill fields separately from RF codes and private receipt files; public reads must never expose originals or private identifiers.
 - Receipt uploads remain pending until authoritative payment confirmation; demo completion must not modify real payments or rankings.

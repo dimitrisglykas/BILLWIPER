@@ -1,4 +1,5 @@
 # Billwiper
+- [ ] Add portfolio footer attribution and concise trust modal without changing swipe cards
 - [x] Clean showcase presentation with truthful payment states
 - [x] Replace placeholder bills with five anonymous examples and consistent community totals
 - [x] Polish upload validation and verify showcase pages
