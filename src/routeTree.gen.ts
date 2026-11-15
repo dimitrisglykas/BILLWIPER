@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as UploadRouteImport } from './routes/upload'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LeaderboardRoute = LeaderboardRouteImport.update({
@@ -44,6 +50,7 @@ const UploadRoute = UploadRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/impact': typeof ImpactRoute
   '/leaderboard': typeof LeaderboardRoute
   '/sponsors': typeof SponsorsRoute
   '/upload': typeof UploadRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/impact': typeof ImpactRoute
   '/leaderboard': typeof LeaderboardRoute
   '/sponsors': typeof SponsorsRoute
   '/upload': typeof UploadRoute
@@ -59,21 +67,31 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/impact': typeof ImpactRoute
   '/leaderboard': typeof LeaderboardRoute
   '/sponsors': typeof SponsorsRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/leaderboard' | '/sponsors' | '/upload'
+  fullPaths:
+    '/' | '/admin' | '/impact' | '/leaderboard' | '/sponsors' | '/upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/leaderboard' | '/sponsors' | '/upload'
-  id: '__root__' | '/' | '/admin' | '/leaderboard' | '/sponsors' | '/upload'
+  to: '/' | '/admin' | '/impact' | '/leaderboard' | '/sponsors' | '/upload'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/impact'
+    | '/leaderboard'
+    | '/sponsors'
+    | '/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  ImpactRoute: typeof ImpactRoute
   LeaderboardRoute: typeof LeaderboardRoute
   SponsorsRoute: typeof SponsorsRoute
   UploadRoute: typeof UploadRoute
@@ -93,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/leaderboard': {
@@ -122,6 +147,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  ImpactRoute: ImpactRoute,
   LeaderboardRoute: LeaderboardRoute,
   SponsorsRoute: SponsorsRoute,
   UploadRoute: UploadRoute,

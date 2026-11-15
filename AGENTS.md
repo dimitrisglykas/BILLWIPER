@@ -54,3 +54,5 @@ use the editor.
 - Sponsor interest submissions go through a validated server function into an insert-only table; no public read policy, so contact details stay private.
 - Admin access uses a separate roles table checked by a security-definer has_role function; never store roles on profiles.
 - /admin is client-only and noindex; its data comes only from authenticated server functions that re-check has_role, backed by admin-only RLS on sponsor_inquiries.
+- Personal impact reads only the signed-in user's simulated wipe projection through existing own-row RLS; never infer verified results from historical payment statuses without authoritative confirmation.
+- Apply the shared luxury presentation layer through global semantic tokens and existing controls, leaving server functions, contribution rules and database policies unchanged.
