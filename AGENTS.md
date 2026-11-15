@@ -50,3 +50,5 @@ use the editor.
 - Keep fictional sponsor scenarios and share cards in client-safe presentation modules; projected budgets must never enter contribution totals or persisted payment records.
 - Cap open example bills per user in the authenticated create function, so the shared showcase feed cannot be flooded.
 - Translate UI through the shared language context (inline Greek/English pairs, shared dictionary for module data, sample stories and server messages); Greek stays the server-rendered default to avoid hydration mismatches.
+
+- Sponsor interest submissions go through a validated server function into an insert-only table; no public read policy, so contact details stay private.
