@@ -13,3 +13,5 @@
 - [x] Persist isolated demo uploads and full/partial wipes, with live counters and rankings
 - [x] Anonymous cards, upload privacy guidance, and trust footer drawers
 - [x] Verify signed-in persistence, permission boundaries, and mobile/desktop flows
+
+- [x] Provider identities, funded progress, tactile swipe exit, and single-screen mobile polish
