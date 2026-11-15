@@ -39,3 +39,5 @@ use the editor.
 - AI extraction uses the generated Google chat contract through Lovable Gateway inside a server function; validate extracted RF checksums before publishing.
 
 - Serve the brand logo as an actual PNG at /billwiper-logo.png for all logo displays, so it works independently of Lovable asset serving.
+
+- Persist simulated contributions through an authenticated atomic database function with row locking and idempotency; expose only anonymous aggregates and refresh the shared feed on bill change events.

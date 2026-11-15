@@ -15,6 +15,20 @@
       "when": 1794709018599,
       "tag": "0001_scope_public_demo_rankings",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794713098782,
+      "tag": "0002_persist_demo_wipes",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794713248742,
+      "tag": "0003_restrict_public_bill_projection",
+      "breakpoints": true
     }
   ]
 }
