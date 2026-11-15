@@ -1,4 +1,8 @@
 # Billwiper
+- [ ] Connect custom-domain managed Google OAuth — domain connection requires owner confirmation
+- [ ] Complete password recovery and execute approved-inbox test
+- [ ] Retire public legacy payment rankings and test denied direct access
+- [ ] Run auth, privacy and synthetic-only regression tests without granting admin roles
 - [x] Refine shared design system, navigation, swipe deck, community, sponsors, upload and admin presentation
 - [x] Add private personal impact view using existing own-record permissions and honest achievement states
 - [x] Verify languages, mobile/tablet/desktop, sponsor submission and visitor/member/admin access
