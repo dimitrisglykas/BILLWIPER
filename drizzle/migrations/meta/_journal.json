@@ -29,6 +29,13 @@
       "when": 1794713248742,
       "tag": "0003_restrict_public_bill_projection",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794714162509,
+      "tag": "0004_showcase_anonymous_descriptions_rankings",
+      "breakpoints": true
     }
   ]
 }

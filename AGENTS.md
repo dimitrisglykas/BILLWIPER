@@ -43,3 +43,4 @@ use the editor.
 - Persist simulated contributions through an authenticated atomic database function with row locking and idempotency; expose only anonymous aggregates and refresh the shared feed on bill change events.
 
 - Keep bill goals separate from remaining amounts in presentation data; render provider badges and funded progress in a shared card with opacity-only lighting and transform-only motion.
+- Public stories use a dedicated anonymous description, never private notes; showcase totals and rankings share approved sample amounts plus recorded simulations, excluding retired test bills.

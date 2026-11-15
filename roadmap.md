@@ -1,4 +1,7 @@
 # Billwiper
+- [x] Clean showcase presentation with truthful payment states
+- [x] Replace placeholder bills with five anonymous examples and consistent community totals
+- [x] Polish upload validation and verify showcase pages
 - [x] Premium visual refresh, session intro, supplied transparent logo
 - [x] Google/email-only sign-in and smooth demo deck completion/cancellation
 - [x] Mobile/desktop interaction verification and rule tests
