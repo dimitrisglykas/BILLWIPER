@@ -87,6 +87,7 @@ export type Database = {
           bill_count: number
           city: string
           id: number
+          is_public_demo: boolean
           total_amount: number
           username: string
           weekly_amount: number
@@ -95,6 +96,7 @@ export type Database = {
           bill_count: number
           city: string
           id: number
+          is_public_demo?: boolean
           total_amount: number
           username: string
           weekly_amount: number
@@ -103,6 +105,7 @@ export type Database = {
           bill_count?: number
           city?: string
           id?: number
+          is_public_demo?: boolean
           total_amount?: number
           username?: string
           weekly_amount?: number
