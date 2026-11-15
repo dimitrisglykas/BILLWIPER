@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { LangProvider } from "@/lib/i18n";
 import {
   Outlet,
   Link,
@@ -89,10 +90,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { title: "Billwiper — Swipe. Wipe. Change Lives." },
-      { name: "description", content: "Μια μικρή κίνηση, μια μεγάλη ανάσα. Billwiper." },
+      { name: "description", content: "Κάνε το καλό. Σβήσε έναν λογαριασμό κοινής ωφέλειας με ένα swipe. BILLWIPER." },
       { name: "author", content: "Dimitris Glykas" },
-      { property: "og:title", content: "Billwiper" },
-      { property: "og:description", content: "Swipe. Wipe. Change Lives. — βοηθάμε μαζί." },
+      { property: "og:title", content: "BILLWIPER — Swipe. Wipe. Change Lives." },
+      { property: "og:description", content: "Κάνε το καλό. Σβήσε έναν λογαριασμό κοινής ωφέλειας με ένα swipe. 0% προμήθεια." },
+      { property: "og:site_name", content: "BILLWIPER" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -133,7 +135,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <BillwiperShell><Outlet /></BillwiperShell>
+      <LangProvider><BillwiperShell><Outlet /></BillwiperShell></LangProvider>
       <Toaster position="top-center" />
     </QueryClientProvider>
   );
