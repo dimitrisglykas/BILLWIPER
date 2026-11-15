@@ -9,3 +9,6 @@ describe('demo contribution boundaries',()=>{
  it('accepts heating uploads',()=>expect(demoBillInput.safeParse({provider:'Φυσικό Αέριο',amount:68,due_date:'2026-12-15'}).success).toBe(true));
  it('rejects impossible calendar dates',()=>expect(demoBillInput.safeParse({provider:'ΔΕΗ',amount:42.5,due_date:'2026-02-30'}).success).toBe(false));
 });
+import {canAddDemoBill} from './contribution-rules';
+import {test as t2,expect as e2} from 'vitest';
+t2('a user may have at most 3 open example bills',()=>{e2(canAddDemoBill(2)).toBe(true);e2(canAddDemoBill(3)).toBe(false);});

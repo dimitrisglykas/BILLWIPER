@@ -48,3 +48,4 @@ use the editor.
 - Gate existing real-document and receipt handlers with a shared prototype guard while retaining their implementation and historical data; the public feed includes only synthetic rows to avoid reactivating real processing.
 - Derive demo XP from recorded distinct bill participation, never contributed amounts; keep verified-impact rankings empty until authoritative verification exists.
 - Keep fictional sponsor scenarios and share cards in client-safe presentation modules; projected budgets must never enter contribution totals or persisted payment records.
+- Cap open example bills per user in the authenticated create function, so the shared showcase feed cannot be flooded.

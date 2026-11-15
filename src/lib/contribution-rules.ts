@@ -3,4 +3,5 @@ export const demoBillInput=z.object({provider:z.enum(['ΔΕΗ','ΕΥΔΑΠ','Cos
 export function contributionCents(amount:number,remaining:number,isDemo:boolean){
  if(!isDemo||!Number.isFinite(amount)||amount<=0||Math.abs(amount*100-Math.round(amount*100))>0.000001||Math.round(amount*100)>Math.round(remaining*100))throw new Error('Μη έγκυρο ποσό δοκιμαστικής συνεισφοράς.');
  return Math.round(amount*100);
-}
+}export const MAX_OPEN_DEMO_BILLS_PER_USER=3;
+export function canAddDemoBill(openCount:number){return Number.isFinite(openCount)&&openCount<MAX_OPEN_DEMO_BILLS_PER_USER;}
