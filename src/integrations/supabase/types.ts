@@ -184,6 +184,7 @@ export type Database = {
           id: string
           message: string
           privacy_consent: boolean
+          status: string
         }
         Insert: {
           budget_range: string
@@ -194,6 +195,7 @@ export type Database = {
           id?: string
           message?: string
           privacy_consent: boolean
+          status?: string
         }
         Update: {
           budget_range?: string
@@ -204,6 +206,7 @@ export type Database = {
           id?: string
           message?: string
           privacy_consent?: boolean
+          status?: string
         }
         Relationships: []
       }
