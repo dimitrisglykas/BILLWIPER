@@ -45,6 +45,7 @@ export type Database = {
           amount: number
           city: string
           created_at: string
+          demo_remaining: number | null
           due_date: string | null
           first_name: string
           id: string
@@ -58,6 +59,7 @@ export type Database = {
           amount: number
           city: string
           created_at?: string
+          demo_remaining?: number | null
           due_date?: string | null
           first_name: string
           id?: string
@@ -71,6 +73,7 @@ export type Database = {
           amount?: number
           city?: string
           created_at?: string
+          demo_remaining?: number | null
           due_date?: string | null
           first_name?: string
           id?: string
@@ -168,6 +171,44 @@ export type Database = {
         }
         Relationships: []
       }
+      wipes: {
+        Row: {
+          amount: number
+          bill_id: string
+          created_at: string
+          id: string
+          is_demo: boolean
+          request_id: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          bill_id: string
+          created_at?: string
+          id?: string
+          is_demo?: boolean
+          request_id: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          bill_id?: string
+          created_at?: string
+          id?: string
+          is_demo?: boolean
+          request_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wipes_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -181,6 +222,20 @@ export type Database = {
           total_amount: number
           username: string
         }[]
+      }
+      demo_wipe_rankings: {
+        Args: never
+        Returns: {
+          bill_count: number
+          total_amount: number
+          username: string
+          weekly_amount: number
+        }[]
+      }
+      demo_wipe_total: { Args: never; Returns: number }
+      record_demo_wipe: {
+        Args: { p_amount: number; p_bill_id: string; p_request_id: string }
+        Returns: number
       }
     }
     Enums: {
