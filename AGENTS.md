@@ -52,3 +52,4 @@ use the editor.
 - Translate UI through the shared language context (inline Greek/English pairs, shared dictionary for module data, sample stories and server messages); Greek stays the server-rendered default to avoid hydration mismatches.
 
 - Sponsor interest submissions go through a validated server function into an insert-only table; no public read policy, so contact details stay private.
+- Admin access uses a separate roles table checked by a security-definer has_role function; never store roles on profiles.
