@@ -174,6 +174,39 @@ export type Database = {
         }
         Relationships: []
       }
+      sponsor_inquiries: {
+        Row: {
+          budget_range: string
+          company: string
+          contact_name: string
+          created_at: string
+          email: string
+          id: string
+          message: string
+          privacy_consent: boolean
+        }
+        Insert: {
+          budget_range: string
+          company: string
+          contact_name: string
+          created_at?: string
+          email: string
+          id?: string
+          message?: string
+          privacy_consent: boolean
+        }
+        Update: {
+          budget_range?: string
+          company?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          privacy_consent?: boolean
+        }
+        Relationships: []
+      }
       wipes: {
         Row: {
           amount: number
