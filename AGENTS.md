@@ -41,3 +41,5 @@ use the editor.
 - Serve the brand logo as an actual PNG at /billwiper-logo.png for all logo displays, so it works independently of Lovable asset serving.
 
 - Persist simulated contributions through an authenticated atomic database function with row locking and idempotency; expose only anonymous aggregates and refresh the shared feed on bill change events.
+
+- Keep bill goals separate from remaining amounts in presentation data; render provider badges and funded progress in a shared card with opacity-only lighting and transform-only motion.

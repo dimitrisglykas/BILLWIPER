@@ -14,4 +14,4 @@
 - [x] Anonymous cards, upload privacy guidance, and trust footer drawers
 - [x] Verify signed-in persistence, permission boundaries, and mobile/desktop flows
 
-- [ ] Provider identities, funded progress, tactile swipe exit, and single-screen mobile polish
+- [x] Provider identities, funded progress, tactile swipe exit, and single-screen mobile polish
