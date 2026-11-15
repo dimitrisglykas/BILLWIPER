@@ -1,4 +1,6 @@
 # Billwiper
+- [ ] Pivot to reviewed RF bills, private document/receipt submissions, role-protected bill review and direct-link sharing; retire simulation entry points
+- [ ] Verify RF validation, status transitions, public/private access and mobile card clearance
 - [x] Verify reset-to-registration switching and hide managed Google sign-in outside lovable.app without changing auth settings
 - [x] Repair reproduced mobile clearance, centered cancellation, account return focus and bilingual error states without redesign
 - [x] Patch scanned production dependency advisories and run validation/privacy regressions
