@@ -47,6 +47,7 @@ export const submitReceipt=createServerFn({method:'POST'}).middleware([requireSu
  return {status:'PENDING' as const};
 });
 export const createDemoBill=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((input:unknown)=>demoBillInput.parse(input)).handler(async({data,context})=>{
+ throw new Error('SIMULATIONS_RETIRED');
  const {supabaseAdmin}=await import('@/integrations/supabase/client.server');
  const open=await supabaseAdmin.from('bills').select('id',{count:'exact',head:true}).eq('owner_id',context.userId).eq('is_demo',true).eq('status','OPEN');
  if(open.error||!canAddDemoBill(open.count??0))throw new Error('Έχεις ήδη 3 ενεργά παραδείγματα στη ροή. Δοκίμασε ξανά όταν σβηστεί κάποιο.');
