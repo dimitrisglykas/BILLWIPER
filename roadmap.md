@@ -1,7 +1,7 @@
 # Billwiper
-- [ ] Refine shared design system, navigation, swipe deck, community, sponsors, upload and admin presentation
-- [ ] Add private personal impact view using existing own-record permissions and honest achievement states
-- [ ] Verify languages, mobile/tablet/desktop, sponsor submission and visitor/member/admin access
+- [x] Refine shared design system, navigation, swipe deck, community, sponsors, upload and admin presentation
+- [x] Add private personal impact view using existing own-record permissions and honest achievement states
+- [x] Verify languages, mobile/tablet/desktop, sponsor submission and visitor/member/admin access
 - [x] Upgrade mobile layout, swipe controls, cards and prototype-only transparency without deleting data
 - [x] Add participation-based demo XP, badge previews, weekly/city/creator challenges and shareable impact cards
 - [x] Add fictional sponsor campaigns, budget simulator and impact dashboard
