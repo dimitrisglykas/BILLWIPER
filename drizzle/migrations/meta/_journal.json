@@ -43,6 +43,13 @@
       "when": 1794749848051,
       "tag": "0005_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794750113468,
+      "tag": "0006_sponsor_inquiries_admin_access",
+      "breakpoints": true
     }
   ]
 }
