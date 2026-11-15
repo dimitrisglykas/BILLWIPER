@@ -49,7 +49,7 @@ export const createDemoBill=createServerFn({method:'POST'}).middleware([requireS
 });
 export const recordDemoWipe=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((input:unknown)=>z.object({bill_id:z.string().uuid(),amount:z.number(),request_id:z.string().uuid()}).parse(input)).handler(async({data,context})=>{
  const {data:bill}=await context.supabase.from('bills').select('amount,demo_remaining,is_demo').eq('id',data.bill_id).single();
- if(!bill)throw new Error('Ο λογαριασμός δεν είναι διαθέσιμος.');contributionCents(data.amount,Number(bill.demo_remaining??bill.amount),bill.is_demo);
+ if(!bill)throw new Error('Ο λογαριασμός δεν είναι διαθέσιμος.');contributionCents(data.amount,Math.max(Number(bill.amount),Number(bill.demo_remaining??bill.amount)),bill.is_demo);
  const {data:remaining,error}=await context.supabase.rpc('record_demo_wipe',{p_bill_id:data.bill_id,p_amount:data.amount,p_request_id:data.request_id});
  if(error)throw new Error('Η δοκιμαστική συνεισφορά δεν αποθηκεύτηκε. Έλεγξε το υπόλοιπο.');return {remaining:Number(remaining)};
 });
