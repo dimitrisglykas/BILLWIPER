@@ -11,7 +11,7 @@ describe('email authentication mode switching',()=>{
   it('submits registration with a password after leaving password reset',async()=>{
     render(<EmailAuth onSignedIn={vi.fn()}/>);
     fireEvent.click(screen.getByRole('button',{name:'Ξέχασες τον κωδικό;'}));
-    fireEvent.click(screen.getByRole('button',{name:'Εγγραφή',exact:true}));
+    fireEvent.click(screen.getByRole('button',{name:/^Εγγραφή$/}));
     fireEvent.change(screen.getByLabelText('Email'),{target:{value:'qa@example.com'}});
     fireEvent.change(screen.getByLabelText('Κωδικός'),{target:{value:'test-password'}});
     fireEvent.click(screen.getByRole('button',{name:'Δημιουργία λογαριασμού'}));
@@ -22,7 +22,7 @@ describe('email authentication mode switching',()=>{
   it('submits sign-in rather than a reset after selecting Sign in',async()=>{
     render(<EmailAuth onSignedIn={vi.fn()}/>);
     fireEvent.click(screen.getByRole('button',{name:'Ξέχασες τον κωδικό;'}));
-    fireEvent.click(screen.getByRole('button',{name:'Σύνδεση',exact:true}));
+    fireEvent.click(screen.getByRole('button',{name:/^Σύνδεση$/}));
     fireEvent.change(screen.getByLabelText('Email'),{target:{value:'qa@example.com'}});
     fireEvent.change(screen.getByLabelText('Κωδικός'),{target:{value:'test-password'}});
     fireEvent.click(screen.getByRole('button',{name:'Σύνδεση με email'}));
