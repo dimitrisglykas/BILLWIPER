@@ -1,0 +1,1 @@
+CREATE POLICY rf_unattached_owner_delete ON storage.objects FOR DELETE TO authenticated USING (bucket_id='rf-documents' AND (storage.foldername(name))[1]=auth.uid()::text AND NOT EXISTS (SELECT 1 FROM public.bill_submissions WHERE document_path=name) AND NOT EXISTS (SELECT 1 FROM public.verifications WHERE receipt_image_url=name));

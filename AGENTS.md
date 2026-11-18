@@ -30,9 +30,9 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## App architecture
-- Keep the compact swipe trust dialog in a presentation-only component; explain OCR limitations and simulated payments without changing payment logic.
+- Keep the compact swipe trust dialog in a presentation-only component; explain manual review, external bank payment and pending claims without implying automatic provider verification.
 - Public content uses TanStack content routes with a shared shell; keep protected mutations in authenticated server functions.
-- Store anonymous bill fields separately from RF codes and private receipt files; public reads must never expose originals or private identifiers.
+- Store anonymous bill fields separately from RF codes and private receipt files; public reads must never expose originals or personal identifiers; reviewed RF codes are intentionally public.
 - Receipt uploads remain pending until authoritative payment confirmation; demo completion must not modify real payments or rankings.
 - Public demo rankings require explicit is_public_demo approval; default new entries to private so future rows cannot leak through the example-data policy.
 - Use manifest-only installability without offline caching, so financial data cannot be served from a stale app shell.
@@ -41,11 +41,11 @@ use the editor.
 
 - Serve the brand logo as an actual PNG at /billwiper-logo.png for all logo displays, so it works independently of Lovable asset serving.
 
-- Persist simulated contributions through an authenticated atomic database function with row locking and idempotency; expose only anonymous aggregates and refresh the shared feed on bill change events.
+- Historical simulated contributions are read-only; current RF claims use authenticated atomic transitions and refresh the feed on bill changes.
 
 - Keep bill goals separate from remaining amounts in presentation data; render provider badges and funded progress in a shared card with opacity-only lighting and transform-only motion.
-- Public stories use a dedicated anonymous description, never private notes; showcase totals and rankings share approved sample amounts plus recorded simulations, excluding retired test bills.
-- Gate existing real-document and receipt handlers with a shared prototype guard while retaining their implementation and historical data; the public feed includes only synthetic rows to avoid reactivating real processing.
+- Current public stories use only administrator-approved anonymous fields; exclude historical simulations from current totals.
+- Retain gated legacy OCR/receipt handlers for history; current RF uploads use a separate manually reviewed path and public feeds expose only approved RF rows.
 - Derive demo XP from recorded distinct bill participation, never contributed amounts; keep verified-impact rankings empty until authoritative verification exists.
 - Keep fictional sponsor scenarios and share cards in client-safe presentation modules; projected budgets must never enter contribution totals or persisted payment records.
 - Cap open example bills per user in the authenticated create function, so the shared showcase feed cannot be flooded.
@@ -54,7 +54,7 @@ use the editor.
 - Sponsor interest submissions go through a validated server function into an insert-only table; no public read policy, so contact details stay private.
 - Admin access uses a separate roles table checked by a security-definer has_role function; never store roles on profiles.
 - /admin is client-only and noindex; its data comes only from authenticated server functions that re-check has_role, backed by admin-only RLS on sponsor_inquiries.
-- Personal impact reads only the signed-in user's simulated wipe projection through existing own-row RLS; never infer verified results from historical payment statuses without authoritative confirmation.
+- Personal impact reads only the signed-in user's RF claims through own-row RLS; confirmed state requires the separate reviewed workflow.
 - Apply the shared luxury presentation layer through global semantic tokens and existing controls, leaving server functions, contribution rules and database policies unchanged.
 - Password recovery is a public client-only route authorized only by the SDK recovery event and revalidated user; keep recovery authorization in memory, never infer it from ordinary sessions or editable storage.
 - Retire unused real-payment ranking functions by removing visitor/member execution, preserving definitions and historical rows; public rankings remain synthetic-only.
